@@ -22,3 +22,27 @@
 [submodule "images/releases/cf-redis-release"]
 	path = images/releases/cf-redis-release
 	url = https://github.com/pivotal-cf/cf-redis-release
+[submodule "images/buildpacks/java-buildpack"]
+	path = images/buildpacks/java-buildpack
+	url = git@github.com:cloudfoundry/java-buildpack.git
+[submodule "images/buildpacks/ruby-buildpack"]
+	path = images/buildpacks/ruby-buildpack
+	url = git@github.com:cloudfoundry/ruby-buildpack.git
+[submodule "images/buildpacks/python-buildpack"]
+	path = images/buildpacks/python-buildpack
+	url = git@github.com:cloudfoundry/python-buildpack.git
+[submodule "images/buildpacks/binary-buildpack"]
+	path = images/buildpacks/binary-buildpack
+	url = git@github.com:cloudfoundry/binary-buildpack.git
+[submodule "images/buildpacks/php-buildpack"]
+	path = images/buildpacks/php-buildpack
+	url = git@github.com:cloudfoundry/php-buildpack.git
+[submodule "images/buildpacks/staticfile-buildpack"]
+	path = images/buildpacks/staticfile-buildpack
+	url = git@github.com:cloudfoundry/staticfile-buildpack.git
+[submodule "images/buildpacks/nodejs-buildpack"]
+	path = images/buildpacks/nodejs-buildpack
+	url = git@github.com:cloudfoundry/nodejs-buildpack.git
+[submodule "images/buildpacks/go-buildpack"]
+	path = images/buildpacks/go-buildpack
+	url = git@github.com:cloudfoundry/go-buildpack.git

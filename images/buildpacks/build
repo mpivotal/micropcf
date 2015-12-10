@@ -1,0 +1,35 @@
+#!/bin/bash
+set -e
+
+if [[ -z $1 ]] || [[ ! -d $(dirname "$1") ]]; then
+  echo "Usage:"
+  echo -e "\t$0 /new/or/existing/assets/directory"
+  exit 1
+fi
+
+assets_dir=$(mkdir -p "$1" && cd "$1" && pwd)
+micropcf_dir=$(cd `dirname $0` && cd ../.. && pwd)
+mkdir -p $assets_dir/buildpacks
+
+for buildpack in ruby staticfile python php nodejs go; do
+  pushd $micropcf_dir/images/buildpacks/$buildpack-buildpack > /dev/null
+    BUNDLE_GEMFILE=cf.Gemfile bundle
+    BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-packager --uncached
+    cp ${buildpack}_buildpack*.zip $assets_dir/buildpacks/${buildpack}_buildpack.zip
+  popd >/dev/null
+done
+
+
+pushd $micropcf_dir/images/buildpacks/java-buildpack > /dev/null
+  rm -rf build
+  bundle
+  bundle exec rake package
+  cp build/java-buildpack*.zip $assets_dir/buildpacks/java_buildpack.zip
+  chmod 644 $assets_dir/buildpacks/java_buildpack.zip
+popd >/dev/null
+
+pushd $micropcf_dir/images/buildpacks/binary-buildpack > /dev/null
+  BUNDLE_GEMFILE=cf.Gemfile bundle
+  BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-packager uncached
+  cp binary_buildpack*.zip $assets_dir/buildpacks/binary_buildpack.zip
+popd >/dev/null
