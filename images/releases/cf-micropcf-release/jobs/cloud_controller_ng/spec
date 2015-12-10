@@ -169,7 +169,7 @@ properties:
     default: http://nsync.service.cf.internal:8787
     description: "URL of the Diego nsync service"
   cc.diego.stager_url:
-    default: http://stager.service.cf.internal:8888
+    default: http://stager.service.cf.internal:8890
     description: "URL of the Diego stager service"
   cc.diego.tps_url:
     default: http://tps.service.cf.internal:1518
